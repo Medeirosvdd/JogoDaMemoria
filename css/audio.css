@@ -1,0 +1,41 @@
+.AudioBot {
+    position: fixed;
+    top: 1%;
+    right: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .AudioControl {
+    background-color: rgb(233, 77, 15);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    /* Espaço entre o círculo e o botão */
+  }
+  
+  .AudioBot audio {
+    display: none;
+  }
+  
+  .AudioBot img {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .AudioBot button {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+  }

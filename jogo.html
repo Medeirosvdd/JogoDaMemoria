@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/audio.css">
+    <link rel="stylesheet" href="css/jogo.css">
+    <title>Game!✌</title>
+</head>
+
+<body>
+
+    <div class="grid">
+        <div class="card">
+            <div class="face frente"></div>
+            <div class="face tras"></div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+    <div class="AudioBot">
+        <div class="AudioControl">
+            <audio id="myAudio">
+                <source id="source1" src="audio/trilha-sonora-do-divertida-mente.wav" type="audio/x-wav">
+                <source id="source2" src="audio/Disney Pixars Inside Out - 02 - Team Building.mp3" type="audio/mp3">
+                <source id="source3" src="audio/Disney Pixars Inside Out - 03 Nomanisone Island  National Movers.mp3"
+                    type="audio/mp3">
+            </audio>
+
+
+            <img id="audioIcon" src="img/volume-high-solid.svg" alt="Play" onclick="toggleAudio()">
+
+        </div> <!-- Fechando a última div -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="JS/audios.js"></script>
+</body>
+
+</html>
