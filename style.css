@@ -7,19 +7,13 @@ body {
 
 .menu {
   background-image: url('img/inicialS.png');
-  /* Define a imagem como fundo */
   background-size: cover;
-  /* Ajusta para preencher toda a área */
   background-position: center;
-  /* Centraliza a imagem */
   background-repeat: no-repeat;
-  /* Não repete a imagem */
   height: 100%;
-  /* Faz com que a altura ocupe toda a tela */
   width: 100%;
-  /* Faz com que a largura ocupe toda a tela */
   position: fixed;
-  /* Fixa a imagem mesmo ao rolar a página */
+  
 }
 
 .Play img {

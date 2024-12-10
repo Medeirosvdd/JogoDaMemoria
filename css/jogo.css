@@ -1,4 +1,18 @@
 
+body::before {
+    content: '';
+    background-image: url('../img/fundoLogin.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(8px); /* Aplica o desfoque somente na imagem */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
 
 .grid {
     display: grid;
@@ -25,6 +39,11 @@
     position: absolute;
     background-size: cover;
     background-position: center;
+}
+
+.frente {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
 }
 
 

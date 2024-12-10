@@ -2,8 +2,8 @@ let audio = document.getElementById("myAudio");
 let icon = document.getElementById("audioIcon");
 let trackIndex = 0;
 const tracks = [
-    "audio/trilha-sonora-do-divertida-mente.wav",
-    "audio/Disney Pixars Inside Out - 02 - Team Building.mp3"
+    "audio/Musica1.mp3",
+    "audio/The Muffin Man ° fundo musical infantil sem direitos autorais (1).mp3"
 ];
 
 function toggleAudio() {
