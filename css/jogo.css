@@ -1,20 +1,22 @@
+
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 15px;
     width: 100%;
-    max-width: 800px;
-    margin: 100px auto;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .card {
     aspect-ratio: 3/4;
     width: 100%;
-    background-color: brown;
     border-radius: 5px;
     position: relative;
     transition: all 400ms ease;
     transform-style: preserve-3d;
+    background-color: #ccc;
 }
 
 .face {
@@ -25,16 +27,14 @@
     background-position: center;
 }
 
-.frente {
-    background-image: url(../img/frente\ carta.png);
-    }
+
 
 .tras {
     background-image: url(../img/fundo_Carta.png);
     backface-visibility: hidden;
-    
+
 }
 
-.card:hover {
+.virarcarta {
     transform: rotateY(180deg);
 }
