@@ -1,11 +1,17 @@
+/*aqui é para o corpo do codigo*/
+body {
+    overflow-y: hidden;
 
+}
+
+/* esse aqui e mais para a img de fudo */
 body::before {
     content: '';
     background-image: url('../img/fundoLogin.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(8px); /* Aplica o desfoque somente na imagem */
+    filter: blur(8px); 
     position: absolute;
     top: 0;
     left: 0;
@@ -14,6 +20,8 @@ body::before {
     z-index: -1;
 }
 
+
+/* aqui é para o grid/colunas das cartas */
 .grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -21,8 +29,10 @@ body::before {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 10px;
 }
 
+/* aqui é para as cartas */
 .card {
     aspect-ratio: 3/4;
     width: 100%;
@@ -33,6 +43,7 @@ body::before {
     background-color: #ccc;
 }
 
+/* aqui é para ambas as faces da carta */
 .face {
     width: 100%;
     height: 100%;
@@ -41,19 +52,27 @@ body::before {
     background-position: center;
 }
 
+/* aqui é para a frente da carta */
 .frente {
     backface-visibility: hidden;
     transform: rotateY(180deg);
 }
 
 
-
+/* aqui é para a parte traseira da carta */
 .tras {
     background-image: url(../img/fundo_Carta.png);
     backface-visibility: hidden;
 
 }
 
+/* aqui é para virar a carta */
 .virarcarta {
     transform: rotateY(180deg);
+}
+
+.Infos {
+    background-color: aqua;
+    margin: 10px;
+    width: 100px;
 }
