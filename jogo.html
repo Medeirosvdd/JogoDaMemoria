@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
@@ -12,21 +13,38 @@
 
 <body>
    
-  <div class="Infos">
-
+<div class="Infos">
 <div id="contadorTentativas">Tentativas: 0</div>
 <div id="contadorCartas">Cartas levantadas: 0</div>
 <div id="contadorAcertos">Acertos: 0</div>
-<div id="timer">Tempo: 0s</div>
-
+<div id="timer">Tempo: 20s</div>
 </div>
 
-   
-    <div class="grid">
-       
+<!-- aqui é o modal, onde vai dar o resultado do player  -->
+<div id="modal">
+    <div class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
+</div>
 
+   <!-- aqui é onde as cartas são feitas e colocadas no ceu lugar-->
+    <div class="grid"></div>
 
+<!-- aqui temos a div do audio-->
     <div class="AudioBot">
         <div class="AudioControl">
             <audio id="myAudio">
@@ -40,12 +58,15 @@
             <img id="audioIcon" src="img/volume-high-solid.svg" alt="Play" onclick="toggleAudio()">
 
         </div> 
+        <!-- aqui é onde puxo os JS(JavaScript), eles ficam aqui em baixo para nao dar erro na leitura do jogo-->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="JS/audios.js"></script>
         <script src="JS/jogo.js"></script>
-
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 
 </html>

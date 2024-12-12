@@ -2,7 +2,7 @@
 let tentativa = 0;
 let cartasLevantadas = 0;
 let acertos = 0; // Contador de acertos
-let tempo = 0; // Timer
+let tempo = 20; // Timer
 let primeiraCarta = null;
 let segundaCarta = null;
 let timerInterval; // Armazena o intervalo do timer
@@ -13,6 +13,7 @@ const contadorCartas = document.querySelector("#contadorCartas");
 const contadorAcertos = document.querySelector("#contadorAcertos");
 const timerDisplay = document.querySelector("#timer"); // Exibição do timer
 
+/*aqui é as cartas, se add mias um nome é mais uma carta */
 const cors = [
   'red',
   'blue',
@@ -87,18 +88,24 @@ const atualizarContadores = () => {
 
 // Função para iniciar o timer
 const iniciarTimer = () => {
-  tempo = 0; // Reseta o tempo
-  timerDisplay.textContent = `Tempo: 0s`;
-
+  tempo = 20; // Reseta o tempo
+  timerDisplay.textContent = `Tempo: 20s`;
   timerInterval = setInterval(() => {
-    tempo++;
+    tempo--;
     timerDisplay.textContent = `Tempo: ${tempo}s`;
+  
+    /* verifica se o tempo acabou e reinicia o timer */
+    if (tempo == 0){
+      tempo = 21;
+    }
   }, 1000);
+  
 };
 
 // Função para parar o timer
 const pararTimer = () => {
   clearInterval(timerInterval);
+  
 };
 
 // Função para verificar se o jogo foi concluído
@@ -111,33 +118,35 @@ const verificarJogoConcluido = () => {
   }
 };
 
+
+
 const CreateCard = (cor) => {
   const card = createElement('div', 'card');
   const frente = createElement('div', 'face frente');
   const tras = createElement('div', 'face tras');
-
+  
   frente.style.backgroundImage = `url('./img/${cor}.png')`;
-
+  
   card.appendChild(frente);
   card.appendChild(tras);
   card.addEventListener('click', virarcarta);
-
+  
   return card;
 };
 
 const LoadGame = () => {
   const duplicateCors = [...cors, ...cors];
   const aleatorio = duplicateCors.sort(() => Math.random() - 0.5);
-
+  
   aleatorio.forEach(cor => {
     grid.appendChild(CreateCard(cor));
   });
-
-  // Iniciar o timer quando o jogo começar
+  
   iniciarTimer();
 };
 
-// Chama a função para carregar o jogo
+
+
 LoadGame();
 
 

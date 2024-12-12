@@ -71,8 +71,16 @@ body::before {
     transform: rotateY(180deg);
 }
 
+/*aqui é prara as informações do jogo
+tais elas pontos, timer...*/
+
 .Infos {
-    background-color: aqua;
+    background-color: rgba(192, 192, 192, 0.8); /* Fundo cinza com transparência */
     margin: 10px;
     width: 100px;
+    border-radius: 10px; /* Bordas arredondadas */
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+    z-index: -1; /* Fica atrás do formulário */
 }
