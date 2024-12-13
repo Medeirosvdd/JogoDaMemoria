@@ -75,12 +75,17 @@ body::before {
 tais elas pontos, timer...*/
 
 .Infos {
-    background-color: rgba(192, 192, 192, 0.8); /* Fundo cinza com transparência */
-    margin: 10px;
-    width: 100px;
+    top: 10px; /* Distância do topo */
+    right: 10px; /* Distância da lateral direita (troque por 'left' para o canto esquerdo) */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto com transparência */
+    color: white; /* Texto branco */
+    padding: 15px; /* Espaçamento interno */
     border-radius: 10px; /* Bordas arredondadas */
-    top: 50%;
-    left: 50%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
-    z-index: -1; /* Fica atrás do formulário */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    font-family: Arial, sans-serif; /* Fonte legível */
+    font-size: 14px; /* Tamanho da fonte */
+    z-index: 1000; /* Garante que esteja acima dos outros elementos */
+    text-align: center; /* Centraliza o texto */
+    width: 200px; /* Largura fixa */
 }
+

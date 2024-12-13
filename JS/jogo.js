@@ -1,7 +1,7 @@
 let tentativa = 0;
 let cartasLevantadas = 0;
 let acertos = 0;
-let tempo; // Tempo ajustado pela dificuldade
+let tempo;
 let primeiraCarta = null;
 let segundaCarta = null;
 let timerInterval;
@@ -11,17 +11,19 @@ const contadorTentativas = document.querySelector("#contadorTentativas");
 const contadorCartas = document.querySelector("#contadorCartas");
 const contadorAcertos = document.querySelector("#contadorAcertos");
 const timerDisplay = document.querySelector("#timer");
+const resltado = document.querySelector("#modal");
 
 const cors = [
-  'red',
-  'blue',
-  'green',
-  'yellow',
-  'pink',
-  'purple',
-  'orange',
-  'black',
-  'white',
+  "red",
+  "blue",
+  "green",
+  "yellow",
+  "pink",
+  "purple",
+  "orange",
+  "black",
+  "white",
+  /* 9 cartas */
 ];
 
 const createElement = (tag, className) => {
@@ -33,27 +35,27 @@ const createElement = (tag, className) => {
 const virarcarta = ({ target }) => {
   const card = target.parentNode;
 
-  if (card.classList.contains('virarcarta')) return;
+  if (card.classList.contains("virarcarta")) return;
 
   cartasLevantadas++;
   atualizarContadores();
 
   if (!primeiraCarta) {
     primeiraCarta = card;
-    card.classList.add('virarcarta');
+    card.classList.add("virarcarta");
     return;
   }
 
   if (!segundaCarta) {
     segundaCarta = card;
-    card.classList.add('virarcarta');
+    card.classList.add("virarcarta");
 
     tentativa++;
     atualizarContadores();
 
     if (
-      primeiraCarta.querySelector('.frente').style.backgroundImage ===
-      segundaCarta.querySelector('.frente').style.backgroundImage
+      primeiraCarta.querySelector(".frente").style.backgroundImage ===
+      segundaCarta.querySelector(".frente").style.backgroundImage
     ) {
       acertos++;
       primeiraCarta = null;
@@ -61,8 +63,8 @@ const virarcarta = ({ target }) => {
       atualizarContadores();
     } else {
       setTimeout(() => {
-        primeiraCarta.classList.remove('virarcarta');
-        segundaCarta.classList.remove('virarcarta');
+        primeiraCarta.classList.remove("virarcarta");
+        segundaCarta.classList.remove("virarcarta");
         primeiraCarta = null;
         segundaCarta = null;
       }, 1000);
@@ -77,33 +79,52 @@ const atualizarContadores = () => {
 };
 
 const iniciarTimer = () => {
-  timerDisplay.textContent = `Tempo: ${tempo}s`;
+  const formatarTempo = (tempo) => {
+    const minutos = Math.floor(tempo / 60);
+    const segundos = tempo % 60;
+    return `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+  };
+
+  timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
+
   timerInterval = setInterval(() => {
     tempo--;
-    timerDisplay.textContent = `Tempo: ${tempo}s`;
+    timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
 
-    if (tempo == 0) {
-      pararTimer();
-      alert("Tempo esgotado! Tente novamente.");
-      location.reload(); // Reinicia o jogo
-    }
+    if (tempo <= 0) {
+      clearInterval(timerInterval);
+      timerDisplay.textContent = "Tempo: 00:00";
+
+
+      
+    }else if (acertos == 9) {
+      tempo;
+   
+      FinalModal();
+
+      clearInterval(timerInterval);
+      timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
+    };
   }, 1000);
-};
+  
+}
+
 
 const pararTimer = () => {
   clearInterval(timerInterval);
+  sopInterval();
 };
 
 const CreateCard = (cor) => {
-  const card = createElement('div', 'card');
-  const frente = createElement('div', 'face frente');
-  const tras = createElement('div', 'face tras');
+  const card = createElement("div", "card");
+  const frente = createElement("div", "face frente");
+  const tras = createElement("div", "face tras");
 
   frente.style.backgroundImage = `url('./img/${cor}.png')`;
 
   card.appendChild(frente);
   card.appendChild(tras);
-  card.addEventListener('click', virarcarta);
+  card.addEventListener("click", virarcarta);
 
   return card;
 };
@@ -112,29 +133,64 @@ const LoadGame = () => {
   const duplicateCors = [...cors, ...cors];
   const aleatorio = duplicateCors.sort(() => Math.random() - 0.5);
 
-  aleatorio.forEach(cor => {
+  aleatorio.forEach((cor) => {
     grid.appendChild(CreateCard(cor));
   });
 
   iniciarTimer();
 };
 
-// Função para selecionar dificuldade
+const FinalModal = () => {
+  const Modal2 = prompt(
+    "Teste "
+  ).toUpperCase();
+  
+  if (Modal2 === "S") {
+  tentativa = 0;  
+}else if (Modal2 === "N"){
+  
+  tentativa = 99;   
+}
+
+};
+
 const selecionarDificuldade = () => {
-  const dificuldade = prompt("Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)").toUpperCase();
+  const dificuldade = prompt(
+    "Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)"
+  ).toUpperCase();
 
   if (dificuldade === "F") {
-    tempo = 40;
+    tempo = 300;
   } else if (dificuldade === "M") {
-    tempo = 30;
+    tempo = 180;
   } else if (dificuldade === "D") {
-    tempo = 20;
+    tempo = 60;
   } else {
-    alert("Opção inválida. O jogo será iniciado no modo Fácil.");
-    tempo = 40;
+    alert("Opção inválida. O jogo não será iniciado.");
+    const dificuldade = prompt(
+      "Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)"
+    ).toUpperCase();
+    if (dificuldade === "F") {
+      tempo = 900;
+    } else if (dificuldade === "M") {
+      tempo = 600;
+    } else if (dificuldade === "D") {
+      tempo = 360;
+    } else {
+      alert("Opção inválida. O jogo não será iniciado.");
+      const dificuldade = prompt(
+        "Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)"
+      ).toUpperCase();
+    }
   }
+
+
+
+  
 
   LoadGame();
 };
 
 selecionarDificuldade();
+
+
