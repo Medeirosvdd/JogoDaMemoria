@@ -75,17 +75,17 @@ body::before {
 tais elas pontos, timer...*/
 
 .Infos {
-    top: 10px; /* Distância do topo */
-    right: 10px; /* Distância da lateral direita (troque por 'left' para o canto esquerdo) */
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto com transparência */
-    color: white; /* Texto branco */
-    padding: 15px; /* Espaçamento interno */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
-    font-family: Arial, sans-serif; /* Fonte legível */
-    font-size: 14px; /* Tamanho da fonte */
-    z-index: 1000; /* Garante que esteja acima dos outros elementos */
-    text-align: center; /* Centraliza o texto */
-    width: 200px; /* Largura fixa */
+    top: 10px;
+    right: 10px; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: white; 
+    padding: 15px; 
+    border-radius: 10px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
+    font-family: Arial, sans-serif;
+    font-size: 14px; 
+    z-index: 1000; 
+    text-align: center; 
+    width: 200px; 
 }
 

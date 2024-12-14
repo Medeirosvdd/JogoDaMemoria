@@ -97,11 +97,9 @@ const iniciarTimer = () => {
 
 
       
-    }else if (acertos == 9) {
-      tempo;
-   
+    }else if (acertos == 1) {
       FinalModal();
-
+      tempo;
       clearInterval(timerInterval);
       timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
     };
@@ -112,7 +110,6 @@ const iniciarTimer = () => {
 
 const pararTimer = () => {
   clearInterval(timerInterval);
-  sopInterval();
 };
 
 const CreateCard = (cor) => {
@@ -140,18 +137,34 @@ const LoadGame = () => {
   iniciarTimer();
 };
 
-const FinalModal = () => {
-  const Modal2 = prompt(
-    "Teste "
-  ).toUpperCase();
-  
-  if (Modal2 === "S") {
-  tentativa = 0;  
-}else if (Modal2 === "N"){
-  
-  tentativa = 99;   
-}
 
+const mensagem = `
+Parabéns! Você finalizou o jogo!
+Tentativas: ${tentativa}
+Tempo restante: ${timerDisplay.textContent}
+Acertos: ${acertos}
+
+`;
+
+const FinalModal = () => {
+  const Modal2 = prompt(mensagem).toUpperCase();
+  
+
+  while (true) {
+    resposta = prompt("Deseja jogar novamente? (S/N)").toUpperCase();
+    
+    if (resposta === "S") {
+      alert("Você escolheu jogar novamente!");
+      location.reload();
+      break;  
+    } else if (resposta === "N") {
+      window.open("https://github.com/Medeirosvdd/JogoDaMemoria");  
+      break;  
+    } else {
+      alert("Opção inválida! Por favor, insira 'S' para sim ou 'N' para não.");
+    }
+  }	
+  
 };
 
 const selecionarDificuldade = () => {
@@ -192,5 +205,6 @@ const selecionarDificuldade = () => {
 };
 
 selecionarDificuldade();
+
 
 
