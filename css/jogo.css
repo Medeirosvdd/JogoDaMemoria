@@ -29,11 +29,12 @@ body::before {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 50px;
 }
 
 /* aqui é para as cartas */
 .card {
+    top: -50px;
     aspect-ratio: 3/4;
     width: 100%;
     border-radius: 5px;

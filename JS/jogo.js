@@ -1,3 +1,4 @@
+/*aqui seria as "Variaveis" das infos */
 let tentativa = 0;
 let cartasLevantadas = 0;
 let acertos = 0;
@@ -6,6 +7,8 @@ let primeiraCarta = null;
 let segundaCarta = null;
 let timerInterval;
 
+/*aqui entra nos coisa para criar as cartas
+se me lembrar faço outros comentarios melhores*/
 const grid = document.querySelector(".grid");
 const contadorTentativas = document.querySelector("#contadorTentativas");
 const contadorCartas = document.querySelector("#contadorCartas");
@@ -13,6 +16,8 @@ const contadorAcertos = document.querySelector("#contadorAcertos");
 const timerDisplay = document.querySelector("#timer");
 const resltado = document.querySelector("#modal");
 
+
+/* Aqui ele chama a frente dea carta para o seu respequitivo nome */
 const cors = [
   "red",
   "blue",
@@ -26,12 +31,14 @@ const cors = [
   /* 9 cartas */
 ];
 
+
 const createElement = (tag, className) => {
   const element = document.createElement(tag);
   element.className = className;
   return element;
 };
 
+/* Aqui vira as cartas e compara se é o msm par */
 const virarcarta = ({ target }) => {
   const card = target.parentNode;
 
@@ -72,12 +79,14 @@ const virarcarta = ({ target }) => {
   }
 };
 
+/* Aqui ele Atualiza os contadores de a cordo com a const acima */
 const atualizarContadores = () => {
   contadorTentativas.textContent = `Tentativas: ${tentativa}`;
   contadorCartas.textContent = `Cartas levantadas: ${cartasLevantadas}`;
   contadorAcertos.textContent = `Acertos: ${acertos}`;
 };
 
+/*Aqui ele cria, inicia e atualiza o timer, */
 const iniciarTimer = () => {
   const formatarTempo = (tempo) => {
     const minutos = Math.floor(tempo / 60);
@@ -97,7 +106,8 @@ const iniciarTimer = () => {
 
 
       
-    }else if (acertos == 1) {
+    }else if (acertos == 9) {/* Se eu alterar aqui, Não Posso esquecer de trocar aqui é o controle do prompt final
+      de quando ele aparece*/
       FinalModal();
       tempo;
       clearInterval(timerInterval);
@@ -107,11 +117,12 @@ const iniciarTimer = () => {
   
 }
 
-
+/*Aqui para o timer, //Bem inutio para ser sincero ksk*/ 
 const pararTimer = () => {
   clearInterval(timerInterval);
 };
 
+/*Aqui ele cria as cartas */
 const CreateCard = (cor) => {
   const card = createElement("div", "card");
   const frente = createElement("div", "face frente");
@@ -125,7 +136,7 @@ const CreateCard = (cor) => {
 
   return card;
 };
-
+/* aqui ele cria a const do jogo para iniciar ele */
 const LoadGame = () => {
   const duplicateCors = [...cors, ...cors];
   const aleatorio = duplicateCors.sort(() => Math.random() - 0.5);
@@ -137,7 +148,7 @@ const LoadGame = () => {
   iniciarTimer();
 };
 
-
+/*Não funcionou aparentemente, Não esquecer de arrumar */
 const mensagem = `
 Parabéns! Você finalizou o jogo!
 Tentativas: ${tentativa}
@@ -147,18 +158,17 @@ Acertos: ${acertos}
 `;
 
 const FinalModal = () => {
-  const Modal2 = prompt(mensagem).toUpperCase();
-  
+  alert(mensagem);
 
   while (true) {
     resposta = prompt("Deseja jogar novamente? (S/N)").toUpperCase();
-    
+
     if (resposta === "S") {
       alert("Você escolheu jogar novamente!");
       location.reload();
       break;  
     } else if (resposta === "N") {
-      window.open("https://github.com/Medeirosvdd/JogoDaMemoria");  
+      window.open("https://github.com/Medeirosvdd/JogoDaMemoria");  /*este é um redirecionamento aleatorio, depois toroco */
       break;  
     } else {
       alert("Opção inválida! Por favor, insira 'S' para sim ou 'N' para não.");
@@ -168,42 +178,36 @@ const FinalModal = () => {
 };
 
 const selecionarDificuldade = () => {
-  const dificuldade = prompt(
-    "Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)"
-  ).toUpperCase();
+  
 
-  if (dificuldade === "F") {
-    tempo = 300;
-  } else if (dificuldade === "M") {
-    tempo = 180;
-  } else if (dificuldade === "D") {
-    tempo = 60;
-  } else {
-    alert("Opção inválida. O jogo não será iniciado.");
+  while (true) {
     const dificuldade = prompt(
       "Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)"
     ).toUpperCase();
-    if (dificuldade === "F") {
-      tempo = 900;
-    } else if (dificuldade === "M") {
-      tempo = 600;
-    } else if (dificuldade === "D") {
-      tempo = 360;
-    } else {
-      alert("Opção inválida. O jogo não será iniciado.");
-      const dificuldade = prompt(
-        "Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)"
-      ).toUpperCase();
-    }
-  }
-
-
-
   
+    
+    if (dificuldade === "F") {
+      alert("Voce escolheu a dificuldade facil!");
+     tempo = 300;
+  break;  
+    } else if (dificuldade === "N") {
+      alert("Voce escolheu a dificuldade Normal!");
+     tempo = 180;
+  break;  
+    } else if (dificuldade === "D") {
+      alert("Voce escolheu a dificuldade Dificil!");
+     tempo = 60;
+  break;  
+} else {
+  alert("Opção inválida! Por favor, insira ainformação correta.");
+}
+}	
 
-  LoadGame();
 };
 
+LoadGame();
+
+/* Aqui ele chama a const selecionar dificuldade para iniciar o mesmo */
 selecionarDificuldade();
 
 
