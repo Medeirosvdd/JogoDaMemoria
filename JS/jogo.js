@@ -103,15 +103,18 @@ const iniciarTimer = () => {
     if (tempo <= 0) {
       clearInterval(timerInterval);
       timerDisplay.textContent = "Tempo: 00:00";
-
+      tempo;
+      clearInterval(timerInterval);
+      timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
+      FinalModal();
 
       
     }else if (acertos == 9) {/* Se eu alterar aqui, Não Posso esquecer de trocar aqui é o controle do prompt final
       de quando ele aparece*/
-      FinalModal();
       tempo;
       clearInterval(timerInterval);
       timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
+      FinalModal();
     };
   }, 1000);
   
@@ -150,15 +153,45 @@ const LoadGame = () => {
 
 /*Não funcionou aparentemente, Não esquecer de arrumar */
 const FinalModal = () => {
+
+  const score = {
+    player: localStorage.getItem('palyer') || 'Desconhecido',
+    tentativas: `Tentativas: ${tentativa}`,
+    tempoRestante: timerDisplay.textContent,
+    acertos: acertos
+  };
+  
+  // Recuperar os scores existentes ou criar um array vazio
+  let scores = JSON.parse(localStorage.getItem('scores')) || [];
+  
+  // Adicionar o novo score
+  scores.push(score);
+  
+  // Salvar novamente no LocalStorage
+  localStorage.setItem('scores', JSON.stringify(scores));
+  
+
   const mensagem = `
   Parabéns! Você finalizou o jogo!
   Tentativas: ${tentativa}
   Tempo restante: ${timerDisplay.textContent}
   Acertos: ${acertos}
-  `;
+  `; 
 
+  const mensagemP = `
+  Que pena! Você Não conseguiu!
+  Tentativas: ${tentativa}
+  Tempo restante: ${timerDisplay.textContent}
+  Acertos: ${acertos}
+  `; 
+
+
+
+     if(acertos == 9){
   alert(mensagem);
-
+} else if (tempo == 0){
+  alert(mensagemP)
+}
   while (true) {
     const resposta = prompt("Deseja jogar novamente? (S/N) E para Score").toUpperCase();
 
@@ -167,7 +200,7 @@ const FinalModal = () => {
       location.reload();
       break;
     } else if (resposta === "N") {
-      window.open("https://github.com/Medeirosvdd/JogoDaMemoria");
+      // window.open("https://github.com/Medeirosvdd/JogoDaMemoria");
       break;
     } else if (resposta === "E") {
       window.open("score.html");
@@ -192,37 +225,22 @@ const selecionarDificuldade = () => {
       alert("Voce escolheu a dificuldade facil!");
      tempo = 300;
   break;  
-    } else if (dificuldade === "N") {
-      alert("Voce escolheu a dificuldade Normal!");
+    } else if (dificuldade === "M") {
+      alert("Voce escolheu a dificuldade Média!");
      tempo = 180;
   break;  
     } else if (dificuldade === "D") {
       alert("Voce escolheu a dificuldade Dificil!");
      tempo = 60;
   break;  
+    } else if (dificuldade === "T") {
+      alert("Voce escolheu a dificuldade Dificil!");
+     tempo = 3;
+  break;  
 } else {
   alert("Opção inválida! Por favor, insira ainformação correta.");
 }
 }	
-
-// FinalModal - Salvar dados corretamente
-const score = {
-  player: localStorage.getItem('palyer') || 'Desconhecido',
-  tentativas: tentativa,
-  tempoRestante: timerDisplay.textContent,
-  acertos: acertos
-};
-
-// Recuperar os scores existentes ou criar um array vazio
-let scores = JSON.parse(localStorage.getItem('scores')) || [];
-
-// Adicionar o novo score
-scores.push(score);
-
-// Salvar novamente no LocalStorage
-localStorage.setItem('scores', JSON.stringify(scores));
-
-
 
 };
 

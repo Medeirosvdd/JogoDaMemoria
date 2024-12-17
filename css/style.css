@@ -6,7 +6,7 @@ body {
 }
 
 .menu {
-  background-image: url('img/inicialS.png');
+  background-image: url('../img/inicialS.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

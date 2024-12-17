@@ -34,7 +34,7 @@ body::before {
 
 /* aqui é para as cartas */
 .card {
-    top: -50px;
+    top: -100px;
     aspect-ratio: 3/4;
     width: 100%;
     border-radius: 5px;
@@ -89,4 +89,12 @@ tais elas pontos, timer...*/
     text-align: center; 
     width: 200px; 
 }
-
+a{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;}

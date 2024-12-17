@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tela de Score</title>
+  <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/score.css">
 </head>
 <body>
-  <h1>Placar de Pontuação</h1>
+  <h1>Placar de <br> Pontuação</h1>
   <table class="score-table" border="1">
     <thead>
       <tr>
@@ -45,5 +46,22 @@
       scoreTable.innerHTML = '<tr><td colspan="4">Nenhum dado disponível.</td></tr>';
     }
   </script>
+
+
+<!-- Não esquecer de apagar 
+Começa aqui 
+-->
+ <button id="clear-score" class="clear-button"><div class="BotãoApagar">Limpar Placar</button>
+
+<script>
+  document.getElementById('clear-score').addEventListener('click', () => {
+    localStorage.removeItem('scores'); 
+    document.getElementById('score-table').innerHTML = '<tr><td colspan="4">Nenhum dado disponível.</td></tr>';
+  });
+</script>
+<!-- até aqui -->
+
+
 </body>
 </html>
+

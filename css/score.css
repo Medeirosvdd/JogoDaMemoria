@@ -1,62 +1,106 @@
+/* Estilos para o body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  table {
-    width: 80%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  td {
-    background-color: #f9f9f9;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  tr:hover {
-    background-color: #ddd;
-  }
-  
-  a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  a:hover {
-    background-color: #45a049;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+  text-align: center; 
+}
+
+body::before {
+  content: '';
+  background-image: url('../img/fundoLogin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px); 
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+/* Estilo para o título */
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+/* Estilos para a tabela */
+table {
+  width: 80%; /* Ajusta a largura da tabela */
+  margin-bottom: 20px; /* Espaço abaixo da tabela */
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para células da tabela */
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+/* Estilo para cabeçalho da tabela */
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Estilo para as células de dados */
+td {
+  background-color: #ccc;
+}
+
+/* Estilo para linhas pares da tabela */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Estilo para linha da tabela quando o mouse passa */
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Estilo para o botão "Limpar Placar" */
+.clear-button {
+  background-color: #ff4d4d; /* Cor de fundo */
+  color: #fff; /* Cor do texto */
+  border: none; /* Remove a borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de ponteiro */
+  font-size: 16px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  transition: background-color 0.3s ease; /* Efeito de transição */
+  margin-top: 20px; /* Espaço entre o botão e a tabela */
+}
+
+.clear-button:hover {
+  background-color: #cc0000; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilo para o link de voltar ao jogo */
+a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+a:hover {
+  background-color: #45a049;
+}
