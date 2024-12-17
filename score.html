@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de Score</title>
+  <link rel="stylesheet" href="css/score.css">
+</head>
+<body>
+  <h1>Placar de Pontuação</h1>
+  <table class="score-table" border="1">
+    <thead>
+      <tr>
+        <th scope="col">Jogador</th>
+        <th scope="col">Tentativas</th>
+        <th scope="col">Tempo Restante</th>
+        <th scope="col">Acertos</th>
+      </tr>
+    </thead>
+    <tbody id="score-table">
+      <!-- As linhas de dados serão inseridas aqui -->
+    </tbody>
+  </table>
+  <a href="index.html" class="back-link">Voltar ao Jogo</a>
+
+  <script>
+    // Recupera os dados armazenados no LocalStorage
+    const scoreTable = document.getElementById('score-table');
+    const scores = JSON.parse(localStorage.getItem('scores')) || [];
+
+    // Verifica se há scores e adiciona na tabela
+    if (scores.length > 0) {
+      scores.forEach(score => {
+        const row = `
+          <tr>
+            <td>${score.player}</td>
+            <td>${score.tentativas}</td>
+            <td>${score.tempoRestante}</td>
+            <td>${score.acertos}</td>
+          </tr>
+        `;
+        scoreTable.insertAdjacentHTML('beforeend', row);
+      });
+    } else {
+      scoreTable.innerHTML = '<tr><td colspan="4">Nenhum dado disponível.</td></tr>';
+    }
+  </script>
+</body>
+</html>

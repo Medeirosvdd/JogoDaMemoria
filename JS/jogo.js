@@ -149,33 +149,35 @@ const LoadGame = () => {
 };
 
 /*Não funcionou aparentemente, Não esquecer de arrumar */
-const mensagem = `
-Parabéns! Você finalizou o jogo!
-Tentativas: ${tentativa}
-Tempo restante: ${timerDisplay.textContent}
-Acertos: ${acertos}
-
-`;
-
 const FinalModal = () => {
+  const mensagem = `
+  Parabéns! Você finalizou o jogo!
+  Tentativas: ${tentativa}
+  Tempo restante: ${timerDisplay.textContent}
+  Acertos: ${acertos}
+  `;
+
   alert(mensagem);
 
   while (true) {
-    resposta = prompt("Deseja jogar novamente? (S/N)").toUpperCase();
+    const resposta = prompt("Deseja jogar novamente? (S/N) E para Score").toUpperCase();
 
     if (resposta === "S") {
       alert("Você escolheu jogar novamente!");
       location.reload();
-      break;  
+      break;
     } else if (resposta === "N") {
-      window.open("https://github.com/Medeirosvdd/JogoDaMemoria");  /*este é um redirecionamento aleatorio, depois toroco */
-      break;  
+      window.open("https://github.com/Medeirosvdd/JogoDaMemoria");
+      break;
+    } else if (resposta === "E") {
+      window.open("score.html");
+      break;
     } else {
       alert("Opção inválida! Por favor, insira 'S' para sim ou 'N' para não.");
     }
-  }	
-  
+  }
 };
+
 
 const selecionarDificuldade = () => {
   
@@ -202,6 +204,25 @@ const selecionarDificuldade = () => {
   alert("Opção inválida! Por favor, insira ainformação correta.");
 }
 }	
+
+// FinalModal - Salvar dados corretamente
+const score = {
+  player: localStorage.getItem('palyer') || 'Desconhecido',
+  tentativas: tentativa,
+  tempoRestante: timerDisplay.textContent,
+  acertos: acertos
+};
+
+// Recuperar os scores existentes ou criar um array vazio
+let scores = JSON.parse(localStorage.getItem('scores')) || [];
+
+// Adicionar o novo score
+scores.push(score);
+
+// Salvar novamente no LocalStorage
+localStorage.setItem('scores', JSON.stringify(scores));
+
+
 
 };
 
