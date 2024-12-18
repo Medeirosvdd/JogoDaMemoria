@@ -1,16 +1,20 @@
 /* Estilos para o body */
+/* Estilo para o body com margens fixas superior e inferior e altura mínima */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  height: 100vh; 
-  text-align: center; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 10px;  /* Margem fixa superior */
+  padding-bottom: 20px; /* Margem fixa inferior */
+  min-height: 100vh;  /* Garante que a altura mínima da tela seja 100% da altura da janela */
+  box-sizing: border-box;  /* Inclui o padding dentro do cálculo de altura e largura */
 }
+
 
 body::before {
   content: '';
@@ -18,8 +22,8 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(8px); 
-  position: absolute;
+  filter: blur(8px);
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -27,21 +31,58 @@ body::before {
   z-index: -1;
 }
 
-/* Estilo para o título */
+/* Estilo para o título principal (h1) */
+/* Estilo para o título principal (h1) */
 h1 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 20px; /* Espaço abaixo do título */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px; /* Aumentando o espaço abaixo do título principal */
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
 }
 
-/* Estilos para a tabela */
+/* Estilo para os subtítulos (h2) */
+h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ecf0f1; 
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); 
+  position: relative;
+  z-index: 1;
+}
+
+
+h2::before {
+  content: '';
+  position: absolute;
+  top: -12px; 
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  background-color: rgba(0, 0, 0, 0.7); 
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: -1; 
+}
+
 table {
-  width: 80%; /* Ajusta a largura da tabela */
-  margin-bottom: 20px; /* Espaço abaixo da tabela */
+  margin-top: 30px; 
+  width: 80%;
+  margin-bottom: 20px;
   border-collapse: collapse;
   background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Estilo para células da tabela */
 th, td {

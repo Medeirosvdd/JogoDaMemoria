@@ -1,4 +1,4 @@
-/*aqui seria as "Variaveis" das infos */
+/* Variáveis do jogo */
 let tentativa = 0;
 let cartasLevantadas = 0;
 let acertos = 0;
@@ -6,43 +6,32 @@ let tempo;
 let primeiraCarta = null;
 let segundaCarta = null;
 let timerInterval;
+let numCartas = 18; // Número de cartas padrão (9 pares)
 
-/*aqui entra nos coisa para criar as cartas
-se me lembrar faço outros comentarios melhores*/
+/* Seletores */
 const grid = document.querySelector(".grid");
 const contadorTentativas = document.querySelector("#contadorTentativas");
 const contadorCartas = document.querySelector("#contadorCartas");
 const contadorAcertos = document.querySelector("#contadorAcertos");
 const timerDisplay = document.querySelector("#timer");
-const resltado = document.querySelector("#modal");
 
-
-/* Aqui ele chama a frente dea carta para o seu respequitivo nome */
-const cors = [
-  "red",
-  "blue",
-  "green",
-  "yellow",
-  "pink",
-  "purple",
-  "orange",
-  "black",
-  "white",
-  /* 9 cartas */
+/* Lista de cores para as cartas */
+const cores = [
+  "red", "blue", "green", "yellow", "pink", "purple", "orange", "black", "white",
 ];
 
-
+/* Criação de elementos HTML */
 const createElement = (tag, className) => {
   const element = document.createElement(tag);
   element.className = className;
   return element;
 };
 
-/* Aqui vira as cartas e compara se é o msm par */
+/* Função para virar a carta */
 const virarcarta = ({ target }) => {
   const card = target.parentNode;
 
-  if (card.classList.contains("virarcarta")) return;
+  if (card.classList.contains("virarcarta") || segundaCarta) return;
 
   cartasLevantadas++;
   atualizarContadores();
@@ -53,45 +42,49 @@ const virarcarta = ({ target }) => {
     return;
   }
 
-  if (!segundaCarta) {
-    segundaCarta = card;
-    card.classList.add("virarcarta");
+  segundaCarta = card;
+  card.classList.add("virarcarta");
 
-    tentativa++;
+  tentativa++;
+  atualizarContadores();
+
+  const primeiraCor = primeiraCarta.querySelector(".frente").style.backgroundImage;
+  const segundaCor = segundaCarta.querySelector(".frente").style.backgroundImage;
+
+  if (primeiraCor === segundaCor) {
+    acertos++;
+    primeiraCarta = null;
+    segundaCarta = null;
     atualizarContadores();
 
-    if (
-      primeiraCarta.querySelector(".frente").style.backgroundImage ===
-      segundaCarta.querySelector(".frente").style.backgroundImage
-    ) {
-      acertos++;
+    if (acertos === numCartas / 2) {
+      clearInterval(timerInterval);
+      salvarScore(); // Salva o score ao finalizar
+      FinalModal();
+    }
+  } else {
+    setTimeout(() => {
+      primeiraCarta.classList.remove("virarcarta");
+      segundaCarta.classList.remove("virarcarta");
       primeiraCarta = null;
       segundaCarta = null;
-      atualizarContadores();
-    } else {
-      setTimeout(() => {
-        primeiraCarta.classList.remove("virarcarta");
-        segundaCarta.classList.remove("virarcarta");
-        primeiraCarta = null;
-        segundaCarta = null;
-      }, 1000);
-    }
+    }, 1000);
   }
 };
 
-/* Aqui ele Atualiza os contadores de a cordo com a const acima */
+/* Atualização dos contadores */
 const atualizarContadores = () => {
   contadorTentativas.textContent = `Tentativas: ${tentativa}`;
   contadorCartas.textContent = `Cartas levantadas: ${cartasLevantadas}`;
   contadorAcertos.textContent = `Acertos: ${acertos}`;
 };
 
-/*Aqui ele cria, inicia e atualiza o timer, */
+/* Timer */
 const iniciarTimer = () => {
   const formatarTempo = (tempo) => {
     const minutos = Math.floor(tempo / 60);
     const segundos = tempo % 60;
-    return `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+    return `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
   };
 
   timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
@@ -102,31 +95,14 @@ const iniciarTimer = () => {
 
     if (tempo <= 0) {
       clearInterval(timerInterval);
-      timerDisplay.textContent = "Tempo: 00:00";
-      tempo;
-      clearInterval(timerInterval);
-      timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
+      salvarScore(); // Salva o score mesmo que o jogador perca
       FinalModal();
-
-      
-    }else if (acertos == 9) {/* Se eu alterar aqui, Não Posso esquecer de trocar aqui é o controle do prompt final
-      de quando ele aparece*/
-      tempo;
-      clearInterval(timerInterval);
-      timerDisplay.textContent = `Tempo: ${formatarTempo(tempo)}`;
-      FinalModal();
-    };
+    }
   }, 1000);
-  
-}
-
-/*Aqui para o timer, //Bem inutio para ser sincero ksk*/ 
-const pararTimer = () => {
-  clearInterval(timerInterval);
 };
 
-/*Aqui ele cria as cartas */
-const CreateCard = (cor) => {
+/* Função para criar as cartas */
+const criarCarta = (cor) => {
   const card = createElement("div", "card");
   const frente = createElement("div", "face frente");
   const tras = createElement("div", "face tras");
@@ -139,71 +115,56 @@ const CreateCard = (cor) => {
 
   return card;
 };
-/* aqui ele cria a const do jogo para iniciar ele */
-const LoadGame = () => {
-  const duplicateCors = [...cors, ...cors];
-  const aleatorio = duplicateCors.sort(() => Math.random() - 0.5);
 
-  aleatorio.forEach((cor) => {
-    grid.appendChild(CreateCard(cor));
+/* Função para carregar o jogo */
+const carregarJogo = () => {
+  const coresEscolhidas = cores.slice(0, numCartas / 2); // Seleciona as cores necessárias para os pares
+  const pares = [...coresEscolhidas, ...coresEscolhidas]; // Duplica as cores para criar os pares
+  const cartasEmbaralhadas = pares.sort(() => Math.random() - 0.5); // Embaralha as cartas
+
+  cartasEmbaralhadas.forEach((cor) => {
+    const carta = criarCarta(cor);
+    grid.appendChild(carta);
   });
 
   iniciarTimer();
 };
 
-/*Não funcionou aparentemente, Não esquecer de arrumar */
-const FinalModal = () => {
-
+/* Função para salvar o score no LocalStorage */
+const salvarScore = () => {
   const score = {
-    player: localStorage.getItem('palyer') || 'Desconhecido',
-    tentativas: `Tentativas: ${tentativa}`,
+    player: localStorage.getItem("player") || "Desconhecido",
+    tentativas: tentativa,
     tempoRestante: timerDisplay.textContent,
-    acertos: acertos
+    acertos: acertos,
+    dificuldade: numCartas === 12 ? "Fácil" : numCartas === 14 ? "Médio" : "Difícil",
   };
-  
+
   // Recuperar os scores existentes ou criar um array vazio
-  let scores = JSON.parse(localStorage.getItem('scores')) || [];
-  
+  let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
   // Adicionar o novo score
   scores.push(score);
-  
+
   // Salvar novamente no LocalStorage
-  localStorage.setItem('scores', JSON.stringify(scores));
-  
+  localStorage.setItem("scores", JSON.stringify(scores));
+};
 
-  const mensagem = `
-  Parabéns! Você finalizou o jogo!
-  Tentativas: ${tentativa}
-  Tempo restante: ${timerDisplay.textContent}
-  Acertos: ${acertos}
-  `; 
+/* Modal de final de jogo */
+const FinalModal = () => {
+  const mensagem = acertos === numCartas / 2
+    ? `Parabéns! Você finalizou o jogo!\nTentativas: ${tentativa}\nTempo restante: ${timerDisplay.textContent}\nAcertos: ${acertos}`
+    : `Que pena! Você não conseguiu!\nTentativas: ${tentativa}\nTempo restante: ${timerDisplay.textContent}\nAcertos: ${acertos}`;
 
-  const mensagemP = `
-  Que pena! Você Não conseguiu!
-  Tentativas: ${tentativa}
-  Tempo restante: ${timerDisplay.textContent}
-  Acertos: ${acertos}
-  `; 
-
-
-
-     if(acertos == 9){
   alert(mensagem);
-} else if (tempo == 0){
-  alert(mensagemP)
-}
+
   while (true) {
-    const resposta = prompt("Deseja jogar novamente? (S/N) E para Score").toUpperCase();
+    const resposta = prompt("Deseja jogar novamente? (S/N)").toUpperCase();
 
     if (resposta === "S") {
-      alert("Você escolheu jogar novamente!");
       location.reload();
       break;
     } else if (resposta === "N") {
-      // window.open("https://github.com/Medeirosvdd/JogoDaMemoria");
-      break;
-    } else if (resposta === "E") {
-      window.open("score.html");
       break;
     } else {
       alert("Opção inválida! Por favor, insira 'S' para sim ou 'N' para não.");
@@ -211,43 +172,31 @@ const FinalModal = () => {
   }
 };
 
-
+/* Seleção de dificuldade */
 const selecionarDificuldade = () => {
-  
-
   while (true) {
     const dificuldade = prompt(
       "Escolha a dificuldade: Fácil (F), Médio (M), Difícil (D)"
     ).toUpperCase();
-  
-    
-    if (dificuldade === "F") {
-      alert("Voce escolheu a dificuldade facil!");
-     tempo = 300;
-  break;  
-    } else if (dificuldade === "M") {
-      alert("Voce escolheu a dificuldade Média!");
-     tempo = 180;
-  break;  
-    } else if (dificuldade === "D") {
-      alert("Voce escolheu a dificuldade Dificil!");
-     tempo = 60;
-  break;  
-    } else if (dificuldade === "T") {
-      alert("Voce escolheu a dificuldade Dificil!");
-     tempo = 3;
-  break;  
-} else {
-  alert("Opção inválida! Por favor, insira ainformação correta.");
-}
-}	
 
+    if (dificuldade === "F") {
+      tempo = 300;
+      numCartas = 12; // 6 pares
+      break;
+    } else if (dificuldade === "M") {
+      tempo = 180;
+      numCartas = 14; // 7 pares
+      break;
+    } else if (dificuldade === "D") {
+      tempo = 60;
+      numCartas = 18; // 9 pares
+      break;
+    } else {
+      alert("Opção inválida! Por favor, insira F, M ou D.");
+    }
+  }
 };
 
-LoadGame();
-
-/* Aqui ele chama a const selecionar dificuldade para iniciar o mesmo */
+/* Inicialização */
 selecionarDificuldade();
-
-
-
+carregarJogo();

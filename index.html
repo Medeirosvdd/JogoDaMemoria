@@ -1,46 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/audio.css">
-    <link rel="stylesheet" href="JS/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>Menu</title>
+    <title>Login!📲</title>
+    <link rel="shortcut icon" href="img/fundo_Carta.png" type="image/x-icon" >
 </head>
-
 <body>
-
     
-    <div class="menu">
-     <a href="login.html"><div class="Play"><img src="img/R (2).png" alt=""></div></a>
+    <div class="ai"><a href="score.html">SCORE</a></div>
+
+
+<form class="Login-Form">
+
+<div class="loginH"> 
+    <img src="img/login-de-usuario (1).png" alt="">
+    <h1>Seu Login</h1>
+</div>
+
+<div class="form-background"></div>
+
+
+<input type="text" placeholder="Name" class="Login_name">
+<button type="submit" class="Login_botão" disabled>Jogar</button>
+
+
+</form>
+
+<script src="JS/Login.js"></script>
+
+
+<footer>
+    <div class="img-container">
+        <a href="https://github.com/Medeirosvdd/JogoDaMemoria" target="_blank" rel="noopener noreferrer">
+            <img src="./img/Git.png" alt="GitHub">
+        </a>
+        <a href="https://www.instagram.com/ft_medeiros/" target="_blank" rel="noopener noreferrer">
+            <img src="./img/Instagram_icon.png.webp" alt="instagram">
+        </a>
+        <a href="https://wa.me/qr/KQUIUQQICCDLF1" target="_blank" rel="noopener noreferrer">
+            <img src="./img/WhatsApp logo.png" alt="WhatsApp"> 
+        </a>
     </div>
+</footer>
+
+
     
+<div class="AudioBot">
+    <div class="AudioControl">
+        <audio id="myAudio">
+            <source id="source1" src="audio/trilha-sonora-do-divertida-mente.wav" type="audio/x-wav">
+            <source id="source2" src="audio/Disney Pixars Inside Out - 02 - Team Building.mp3" type="audio/mp3">
+            <source id="source3" src="audio/Disney Pixars Inside Out - 03 Nomanisone Island  National Movers.mp3"
+                type="audio/mp3">
+        </audio>
 
 
-    <div class="AudioBot">
-        <div class="AudioControl">
-            <audio id="myAudio">
-                <source id="source1" src="audio/trilha-sonora-do-divertida-mente.wav" type="audio/x-wav">
-                <source id="source2" src="audio/Disney Pixars Inside Out - 02 - Team Building.mp3" type="audio/mp3">
-                <source id="source3" src="audio/Disney Pixars Inside Out - 03 Nomanisone Island  National Movers.mp3"
-                    type="audio/mp3">
-            </audio>
+        <img id="audioIcon" src="img/volume-high-solid.svg" alt="Play" onclick="toggleAudio()">
 
-
-            <img id="audioIcon" src="img/volume-high-solid.svg" alt="Play" onclick="toggleAudio()">
-
-        </div> <!-- Fechando a última div -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="JS/audios.js"></script>
+    </div> <!-- Fechando a última div -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="JS/audios.js"></script>
 </body>
-
-
-
 </html>
