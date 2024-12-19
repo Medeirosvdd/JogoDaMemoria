@@ -23,7 +23,6 @@
       </tr>
     </thead>
     <tbody id="score-easy">
-      <!-- Dados da dificuldade Fácil serão inseridos aqui -->
     </tbody>
   </table>
 
@@ -38,7 +37,6 @@
       </tr>
     </thead>
     <tbody id="score-medium">
-      <!-- Dados da dificuldade Médio serão inseridos aqui -->
     </tbody>
   </table>
 
@@ -53,7 +51,6 @@
       </tr>
     </thead>
     <tbody id="score-hard">
-      <!-- Dados da dificuldade Difícil serão inseridos aqui -->
     </tbody>
   </table>
 
@@ -80,7 +77,6 @@
     const mediumTable = document.getElementById('score-medium');
     const hardTable = document.getElementById('score-hard');
 
-    // Ordenando os scores por tentativas (menor para maior)
     const sortedScores = scores.sort((a, b) => a.tentativas - b.tentativas);
 
     if (sortedScores.length > 0) {
@@ -94,7 +90,6 @@
           </tr>
         `;
 
-        // Verifica a dificuldade e insere na tabela correspondente
         if (score.dificuldade === 'Fácil') {
           easyTable.insertAdjacentHTML('beforeend', row);
         } else if (score.dificuldade === 'Médio') {
@@ -110,7 +105,6 @@
     }
   </script>
 
-<!-- aqui temos a div do audio-->
 <div class="AudioBot">
   <div class="AudioControl">
       <audio id="myAudio">
@@ -125,7 +119,6 @@
 
   </div> 
   
-  <!-- aqui é onde puxo os JS(JavaScript), eles ficam aqui em baixo para nao dar erro na leitura do jogo-->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

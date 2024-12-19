@@ -28,14 +28,12 @@ function nextTrack() {
 
 audio.addEventListener('ended', nextTrack);
 
-// Salva o estado do áudio antes de navegar
 window.addEventListener('beforeunload', () => {
     localStorage.setItem('audioTrackIndex', trackIndex);
     localStorage.setItem('audioCurrentTime', audio.currentTime);
     localStorage.setItem('audioPaused', audio.paused);
 });
 
-// Restaura o estado do áudio ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     const savedTrackIndex = localStorage.getItem('audioTrackIndex');
     const savedCurrentTime = localStorage.getItem('audioCurrentTime');

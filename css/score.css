@@ -1,5 +1,6 @@
-/* Estilos para o body */
-/* Estilo para o body com margens fixas superior e inferior e altura mínima */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -9,10 +10,10 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-top: 10px;  /* Margem fixa superior */
-  padding-bottom: 20px; /* Margem fixa inferior */
-  min-height: 100vh;  /* Garante que a altura mínima da tela seja 100% da altura da janela */
-  box-sizing: border-box;  /* Inclui o padding dentro do cálculo de altura e largura */
+  padding-top: 10px;  
+  padding-bottom: 20px; 
+  min-height: 100vh; 
+  box-sizing: border-box;  
 }
 
 
@@ -31,21 +32,19 @@ body::before {
   z-index: -1;
 }
 
-/* Estilo para o título principal (h1) */
-/* Estilo para o título principal (h1) */
+
 h1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #2c3e50;
   font-size: 36px;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px; /* Aumentando o espaço abaixo do título principal */
+  margin-bottom: 30px; 
   line-height: 1.4;
   position: relative;
   z-index: 1;
 }
 
-/* Estilo para os subtítulos (h2) */
 h2 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #ecf0f1; 
@@ -84,54 +83,48 @@ table {
 }
 
 
-/* Estilo para células da tabela */
 th, td {
   padding: 10px;
   text-align: center;
   border: 1px solid #ccc;
 }
 
-/* Estilo para cabeçalho da tabela */
 th {
   background-color: #4CAF50;
   color: white;
 }
 
-/* Estilo para as células de dados */
 td {
   background-color: #ccc;
 }
 
-/* Estilo para linhas pares da tabela */
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Estilo para linha da tabela quando o mouse passa */
 tr:hover {
   background-color: #ddd;
 }
 
-/* Estilo para o botão "Limpar Placar" */
 .clear-button {
-  background-color: #ff4d4d; /* Cor de fundo */
-  color: #fff; /* Cor do texto */
-  border: none; /* Remove a borda */
-  padding: 10px 20px; /* Espaçamento interno */
-  border-radius: 5px; /* Bordas arredondadas */
-  cursor: pointer; /* Cursor de ponteiro */
-  font-size: 16px; /* Tamanho da fonte */
-  font-weight: bold; /* Negrito */
-  transition: background-color 0.3s ease; /* Efeito de transição */
-  margin-top: 20px; /* Espaço entre o botão e a tabela */
+  background-color: #ff4d4d; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  font-weight: bold; 
+  transition: background-color 0.3s ease; 
+  margin-top: 20px;
 }
 
 .clear-button:hover {
-  background-color: #cc0000; /* Cor de fundo ao passar o mouse */
+  background-color: #cc0000; 
 }
 
-/* Estilo para o link de voltar ao jogo */
 a {
+  font-family: "Poppins", serif;
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;

@@ -13,9 +13,8 @@ const validateInput = ({ target }) => {
 const handleSubmit = (event) => {
   event.preventDefault();
   
-  // Corrigido para salvar como "player"
   localStorage.setItem('player', input.value);
-  window.location = 'jogo.html'; // Redireciona para o jogo
+  window.location = 'jogo.html';
 };
 
 input.addEventListener('input', validateInput);
